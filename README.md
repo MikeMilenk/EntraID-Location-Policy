@@ -141,6 +141,78 @@ This confirmed that:
 
 ---
 
+## Troubleshooting
+
+During testing, I encountered an issue where the Conditional Access policy was not behaving as expected.
+
+### Issue
+
+Initially, I tested the policy using my admin account and was able to sign in from any location. This was expected because I had excluded my admin account from the policy to avoid locking myself out.
+
+To properly validate the policy, I created two additional standard users (no admin privileges) and attempted to sign in using a VPN from different countries.
+
+However, even when connecting from external locations, I was still able to successfully sign in. This caused confusion, as the policy was configured to block access based on location.
+
+---
+
+### Troubleshooting Steps
+
+1. **Reviewed Conditional Access policy configuration**
+   - Verified:
+     - Users → All users (excluding admin)
+     - Locations → configured correctly
+     - Grant → Block access  
+   - Everything appeared to be correct
+
+2. **Checked VPN configuration**
+   - Verified VPN location (different countries)
+   - Considered possibility of DNS or IP leaks
+   - Assumed Microsoft might still detect my real location
+
+3. **Changed testing strategy**
+   - Created a policy using a country I am definitely not in (Egypt)
+   - Ensured I was neither physically nor logically located there
+   - Retested using standard user accounts
+
+---
+
+### Result
+
+- Still able to sign in successfully  
+- Confirmed the issue was not related to VPN or geolocation detection  
+
+---
+
+### Root Cause
+
+The issue was caused by:
+
+> **Target Resources not being configured**
+
+- Policy setting:
+  - `Target resources → None selected`
+
+This meant the Conditional Access policy was not applied to any cloud applications, so it never enforced the block.
+
+---
+
+### Resolution
+
+- Updated:
+  - `Target resources → All cloud apps`
+
+After applying this change:
+- Sign-ins from non-allowed locations were successfully blocked  
+- Policy behaved as expected  
+
+---
+
+### Key Takeaway
+
+Even if all conditions (users, locations, and grant controls) are configured correctly, a Conditional Access policy will **not take effect unless target resources are defined**.
+
+---
+
 ## Skills Practiced
 - Microsoft 365 tenant setup  
 - Microsoft Entra ID administration  
