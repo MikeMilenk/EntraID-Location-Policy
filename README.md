@@ -149,10 +149,12 @@ During testing, I encountered an issue where the Conditional Access policy was n
 
 Initially, I tested the policy using my admin account and was able to sign in from any location. This was expected because I had excluded my admin account from the policy to avoid locking myself out.
 
-To properly validate the policy, I created two additional standard users (no admin privileges) and attempted to sign in using a VPN from different countries.
+To properly validate the policy, I created 2 additional standard users (no admin privileges) and attempted to sign in using a VPN from different countries.
 
 However, even when connecting from external locations, I was still able to successfully sign in. This caused confusion, as the policy was configured to block access based on location.
 
+---
+During testing, I encountered an issue where the policy did not behave as expected, which required further investigation.
 ---
 
 ### Troubleshooting Steps
@@ -170,7 +172,7 @@ However, even when connecting from external locations, I was still able to succe
    - Assumed Microsoft might still detect my real location
 
 3. **Changed testing strategy**
-   - Created a policy using a country I am definitely not in (Egypt)
+   - Created a policy using a country I'm definitely not in (Egypt)
    - Ensured I was neither physically nor logically located there
    - Retested using standard user accounts
 
@@ -199,7 +201,7 @@ This meant the Conditional Access policy was not applied to any cloud applicatio
 ### Resolution
 
 - Updated:
-  - `Target resources → All cloud apps`
+  - `Target resources → All resources (formely 'All cloud apps')`
 
 After applying this change:
 - Sign-ins from non-allowed locations were successfully blocked  
