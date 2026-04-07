@@ -141,6 +141,10 @@ This confirmed that:
 
 ---
 
+During testing, I encountered an issue where the policy did not behave as expected, which required further investigation.
+
+---
+
 ## Troubleshooting
 
 During testing, I encountered an issue where the Conditional Access policy was not behaving as expected.
@@ -153,8 +157,6 @@ To properly validate the policy, I created 2 additional standard users (no admin
 
 However, even when connecting from external locations, I was still able to successfully sign in. This caused confusion, as the policy was configured to block access based on location.
 
----
-During testing, I encountered an issue where the policy did not behave as expected, which required further investigation.
 ---
 
 ### Troubleshooting Steps
