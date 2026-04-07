@@ -203,7 +203,7 @@ This meant the Conditional Access policy was not applied to any cloud applicatio
 ### Resolution
 
 - Updated:
-  - `Target resources → All resources (formely 'All cloud apps')`
+  - `Target resources → All resources (formerly 'All cloud apps')`
 
 After applying this change:
 - Sign-ins from non-allowed locations were successfully blocked  
